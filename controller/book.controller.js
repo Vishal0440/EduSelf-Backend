@@ -21,7 +21,7 @@ export const getOne = async (req, res) => {
 };
 
 // Create new book (✅ fixed coverUrl not saving)
-exports.create = async (req, res) => {
+export const create = async (req, res) => {
   try {
     const { title, author, description, year, plan, videoUrl, coverUrl } =
       req.body;
@@ -43,7 +43,7 @@ exports.create = async (req, res) => {
 };
 
 // Update existing book
-exports.update = async (req, res) => {
+export const update = async (req, res) => {
   try {
     const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -57,7 +57,7 @@ exports.update = async (req, res) => {
 };
 
 // Delete a book
-exports.remove = async (req, res) => {
+export const remove = async (req, res) => {
   try {
     const book = await Book.findByIdAndDelete(req.params.id);
     if (!book) return res.status(404).json({ error: "Book not found" });
